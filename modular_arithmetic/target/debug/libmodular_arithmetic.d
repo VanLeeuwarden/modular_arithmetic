@@ -1,0 +1,1 @@
+/home/teawizard/Programming/modular_arithmetic/target/debug/libmodular_arithmetic.rlib: /home/teawizard/Programming/modular_arithmetic/src/arithmetic.rs /home/teawizard/Programming/modular_arithmetic/src/functions.rs /home/teawizard/Programming/modular_arithmetic/src/lib.rs
