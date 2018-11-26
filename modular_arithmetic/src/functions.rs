@@ -1,5 +1,6 @@
-use std::u64;
+use std::{u64, i64};
 use std::cmp::{max, min};
+use arithmetic::mod_abs;
 
 
 //classical euclidean algorithm implemented non-recusively
@@ -22,7 +23,7 @@ pub fn split_odd_even(n: u64) -> (u64, u64) {
 	let mut n_shift = n;
 
 	loop {
-		if n & 1 == 0 {
+		if n_shift & 1 == 0 {
 			even_power += 1;
 			n_shift = n_shift.rotate_right(1)
 		} else {
@@ -71,8 +72,8 @@ fn jacobi_flip(n: u64, d: u64) -> bool {
 	}
 }
 
-pub fn jacobi_symbol(n: u64, d: u64) -> i8 {
-	let mut num = n;
+pub fn jacobi_symbol(n: i64, d: u64) -> i8 {
+	let mut num = mod_abs(n, d);
 	let mut den = d;
 
 	let mut jacobi: i8 = 1;

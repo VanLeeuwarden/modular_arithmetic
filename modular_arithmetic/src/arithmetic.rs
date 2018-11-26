@@ -1,4 +1,5 @@
 use std::u64;
+use std::i64;
 
 
 pub fn mod_add(a:u64, b:u64, q:u64) -> u64 {
@@ -10,6 +11,19 @@ pub fn mod_add(a:u64, b:u64, q:u64) -> u64 {
 		None => slow_add(a0,b0,q)
 	}
 }
+
+pub fn mod_abs(a: i64, q: u64) -> u64 {
+	let mut abs_a = a;
+	while abs_a < 0 {
+		abs_a += q as i64;
+	}
+	abs_a as u64
+}
+
+pub fn mod_sub(a: i64, b: i64, modulus: u64) -> u64 {
+	mod_add(mod_abs(a,modulus), mod_abs(b, modulus), modulus)
+}
+
 
 //assumes a,b < q
 fn slow_add(a:u64, b:u64, q:u64) -> u64 {
