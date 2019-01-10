@@ -2,5 +2,6 @@
 name = "modular_arithmetic"
 version = "0.1.0"
 authors = ["Van Leeuwarden"]
+repository = "https://github.com/VanLeeuwarden/modular_arithmetic"
 
 [dependencies]
