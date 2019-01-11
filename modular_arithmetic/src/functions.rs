@@ -17,6 +17,16 @@ pub fn gcd(a: u64, b: u64) -> u64 {
 	smaller
 }
 
+#[test]
+fn verify_gcd(){
+	assert_eq!(gcd(1,2), 1);
+	assert_eq!(gcd(1,4), 1);
+	assert_eq!(gcd(2,4), 2);
+	assert_eq!(gcd(9, 81), 9);
+	assert_eq!(gcd(11,17), 1);
+	assert_eq!(gcd(300,400), 100);
+}
+
 //returns the odd part of n and the exponent of the even power
 pub fn split_odd_even(n: u64) -> (u64, u64) {
 	let mut even_power = 0;
@@ -72,7 +82,13 @@ fn jacobi_flip(n: u64, d: u64) -> bool {
 	}
 }
 
+
+//jacobi symbol only defined for odd d
 pub fn jacobi_symbol(n: i64, d: u64) -> i8 {
+	if d == 1 {
+		return 1
+	}
+
 	let mut num = mod_abs(n, d);
 	let mut den = d;
 
@@ -103,4 +119,13 @@ pub fn jacobi_symbol(n: i64, d: u64) -> i8 {
 
 		std::mem::swap(&mut num, &mut den);
 	}
+}
+
+#[test]
+fn verify_jacobi_symbol() {
+	assert_eq!(jacobi_symbol(1,1),1);
+	assert_eq!(jacobi_symbol(25, 11), 1);
+	assert_eq!(jacobi_symbol(18, 37), -1);
+	assert_eq!(jacobi_symbol(24, 43), 1);
+	assert_eq!(jacobi_symbol(20, 45), 0);
 }
