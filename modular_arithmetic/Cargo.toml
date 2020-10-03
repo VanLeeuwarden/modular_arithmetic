@@ -1,6 +1,6 @@
 [package]
 name = "modular_arithmetic"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Van Leeuwarden"]
 repository = "https://github.com/VanLeeuwarden/modular_arithmetic"
 

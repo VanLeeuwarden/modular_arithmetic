@@ -55,16 +55,25 @@ fn slow_mul(a:u64, b:u64, q:u64) -> u64 {
 	total 
 }
 
-pub fn mod_exp(base :u64, exponent :u64, q:u64) -> u64 {
-	if exponent == 0{
-		return 1
+pub fn mod_exp(base:u64, exponent:u64, modulus:u64) -> u64 {
+	let mut value = 1;
+	let mut digits = exponent;
+	let mut b = base;
+	while digits != 0 {
+		if digits % 2 != 0 {
+			value = mod_mul(value, base, modulus);
+			digits -= 1;
+		}
+		digits /= 2;
+		b = mod_mul(b, b, modulus);
 	}
-
-	let reduced_base = base % q;
-	let mut current_state = reduced_base;
-
-	for _i in 0..exponent-1 {
-		current_state = mod_mul(current_state, reduced_base, q);
-	}
-	current_state
+	return value;
+}
+#[test]
+fn verify_mod_exp(){
+	assert_eq!(mod_exp(0, 100, 6), 0);
+	assert_eq!(mod_exp(1, 3, 20), 1);
+	assert_eq!(mod_exp(3, 11, 6), 3);
+	assert_eq!(mod_exp(4, 5, 7), 2);
+	assert_eq!(mod_exp(18446744073709551615, 30, 10), 5);
 }
